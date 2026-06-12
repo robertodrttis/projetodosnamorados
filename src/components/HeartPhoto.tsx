@@ -10,7 +10,6 @@ interface HeartPhotoProps {
 export function HeartPhoto({ src, zoom = 1, objectPosition = 'center center' }: HeartPhotoProps) {
   return (
     <div className="heart-photo">
-      <div className="heart-photo__glow" />
       <div className="heart-photo__wrapper">
         <svg className="heart-photo__border" viewBox="0 0 100 90" aria-hidden="true">
           <defs>

@@ -167,14 +167,19 @@
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 1.5rem;
-  filter: grayscale(100%) contrast(1.1);
-  box-shadow: 0 0 30px rgba(255, 26, 26, 0.25);
+  border: 1px solid rgba(255, 26, 26, 0.35);
+  background: #111;
+  min-height: 200px;
 }
 
 .music-screen__photo img {
+  display: block;
   width: 100%;
-  aspect-ratio: 3/4;
+  min-height: 320px;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
+  object-position: center center;
+  filter: brightness(1.15) contrast(1.05);
 }
 
 .music-screen__player {

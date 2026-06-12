@@ -1,4 +1,4 @@
-import { config } from '../config'
+import { useSiteConfig } from '../context/SiteConfigContext'
 import './screens.css'
 
 interface MusicScreenProps {
@@ -6,10 +6,12 @@ interface MusicScreenProps {
 }
 
 export function MusicScreen({ onContinue }: MusicScreenProps) {
+  const { config } = useSiteConfig()
+
   return (
     <section className="screen screen--fade music-screen">
       <div className="music-screen__photo">
-        <img src={config.photos.music} alt="Nós dois" />
+        <img src={config.photos.music} alt="Nós dois" loading="eager" />
       </div>
 
       <div className="music-screen__player glow-red">

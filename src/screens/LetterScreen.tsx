@@ -1,4 +1,4 @@
-import { config } from '../config'
+import { useSiteConfig } from '../context/SiteConfigContext'
 import { useTypewriter } from '../hooks/useTypewriter'
 import './screens.css'
 
@@ -7,6 +7,7 @@ interface LetterScreenProps {
 }
 
 export function LetterScreen({ onContinue }: LetterScreenProps) {
+  const { config } = useSiteConfig()
   const { displayed, done } = useTypewriter(config.letter, 24)
 
   return (

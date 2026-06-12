@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { config } from '../config'
+import { useSiteConfig } from '../context/SiteConfigContext'
 import './screens.css'
 
 interface SpecialScreenProps {
@@ -7,6 +7,7 @@ interface SpecialScreenProps {
 }
 
 export function SpecialScreen({ onContinue }: SpecialScreenProps) {
+  const { config } = useSiteConfig()
   const [visibleCount, setVisibleCount] = useState(0)
 
   useEffect(() => {
@@ -15,7 +16,7 @@ export function SpecialScreen({ onContinue }: SpecialScreenProps) {
       timers.push(setTimeout(() => setVisibleCount(i + 1), (i + 1) * 700))
     })
     return () => timers.forEach(clearTimeout)
-  }, [])
+  }, [config.reasons])
 
   const allVisible = visibleCount >= config.reasons.length
 

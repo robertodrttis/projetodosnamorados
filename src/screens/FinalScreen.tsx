@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react'
-import { config, getWhatsAppUrl } from '../config'
+import { useSiteConfig } from '../context/SiteConfigContext'
+import { getWhatsAppUrl } from '../types/siteConfig'
 import { useTypewriter } from '../hooks/useTypewriter'
 import './screens.css'
 
 const TYPEWRITER_SPEED = 42
 
 export function FinalScreen() {
+  const { config } = useSiteConfig()
   const { displayed, done } = useTypewriter(config.gift, TYPEWRITER_SPEED)
   const contentRef = useRef<HTMLDivElement>(null)
   const followScrollRef = useRef(true)
@@ -13,7 +15,6 @@ export function FinalScreen() {
   const handleScroll = () => {
     const el = contentRef.current
     if (!el) return
-
     const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight
     followScrollRef.current = distanceFromBottom < 48
   }
@@ -21,7 +22,6 @@ export function FinalScreen() {
   useEffect(() => {
     const el = contentRef.current
     if (!el || !followScrollRef.current) return
-
     el.scrollTop = el.scrollHeight
   }, [displayed])
 
@@ -41,7 +41,7 @@ export function FinalScreen() {
       {done && (
         <a
           className="final-screen__whatsapp fade-in"
-          href={getWhatsAppUrl()}
+          href={getWhatsAppUrl(config)}
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { config } from '../config'
 
-export const MUSIC_SRC = encodeURI(config.music.src)
-
-export function useBackgroundMusic() {
+export function useBackgroundMusic(musicSrc: string) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [playing, setPlaying] = useState(false)
+  const encodedSrc = encodeURI(musicSrc)
 
   const play = useCallback(async () => {
     const audio = audioRef.current
@@ -54,5 +52,5 @@ export function useBackgroundMusic() {
     }
   }, [playing])
 
-  return { audioRef, play, playing }
+  return { audioRef, play, playing, musicSrc: encodedSrc }
 }

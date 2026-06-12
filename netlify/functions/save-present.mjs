@@ -1,4 +1,4 @@
-import { getStore } from '@netlify/blobs'
+import { connectLambda, getStore } from '@netlify/blobs'
 import { randomBytes } from 'crypto'
 
 const cors = {
@@ -17,6 +17,16 @@ function json(statusCode, body) {
 
 function createId() {
   return randomBytes(6).toString('hex')
+}
+
+function parseBody(event) {
+  if (!event.body) return null
+
+  const raw = event.isBase64Encoded
+    ? Buffer.from(event.body, 'base64').toString('utf8')
+    : event.body
+
+  return JSON.parse(raw)
 }
 
 function isValid(data) {
@@ -47,7 +57,14 @@ export async function handler(event) {
   }
 
   try {
-    const data = JSON.parse(event.body || '{}')
+    connectLambda(event)
+
+    let data
+    try {
+      data = parseBody(event)
+    } catch {
+      return json(400, { error: 'JSON inválido no corpo da requisição' })
+    }
 
     if (!isValid(data)) {
       return json(400, { error: 'Dados incompletos' })
@@ -73,7 +90,7 @@ export async function handler(event) {
 
     return json(200, { id })
   } catch (err) {
-    console.error('save-present:', err)
+    console.error('save-present:', err?.message || err)
     return json(500, { error: 'Erro ao salvar o presente' })
   }
 }

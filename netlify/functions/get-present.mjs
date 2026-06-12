@@ -1,4 +1,4 @@
-import { getStore } from '@netlify/blobs'
+import { connectLambda, getStore } from '@netlify/blobs'
 
 const cors = {
   'Access-Control-Allow-Origin': '*',
@@ -30,6 +30,8 @@ export async function handler(event) {
   }
 
   try {
+    connectLambda(event)
+
     const store = getStore('presentes')
     const data = await store.get(id, { type: 'json' })
 
@@ -39,7 +41,7 @@ export async function handler(event) {
 
     return json(200, data)
   } catch (err) {
-    console.error('get-present:', err)
+    console.error('get-present:', err?.message || err)
     return json(500, { error: 'Erro ao carregar o presente' })
   }
 }

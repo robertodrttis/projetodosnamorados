@@ -6,6 +6,9 @@
 [functions]
   node_bundler = "esbuild"
 
+[functions."save-present"]
+  timeout = 26
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

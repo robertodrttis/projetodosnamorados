@@ -1,0 +1,320 @@
+.screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem 3rem;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.screen--fade {
+  animation: fadeIn 0.9s ease forwards;
+}
+
+.screen__title {
+  font-family: var(--font-script);
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  color: var(--red);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.screen__text {
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 340px;
+}
+
+.screen__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, #ff1a1a, #cc0000);
+  color: var(--white);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  transition: transform 0.3s;
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.screen__btn:hover {
+  transform: scale(1.04);
+}
+
+.screen__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Entry */
+.entry__name {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  color: var(--red);
+  margin: 1.5rem 0 1rem;
+}
+
+.entry__quote {
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 320px;
+  font-style: italic;
+}
+
+/* Letter */
+.letter-screen {
+  justify-content: flex-start;
+  padding-top: 3rem;
+}
+
+.letter-screen__content {
+  text-align: left;
+  max-width: 420px;
+  width: 100%;
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: var(--gray);
+  font-weight: 300;
+  white-space: pre-wrap;
+  min-height: 50vh;
+}
+
+.letter-screen__cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--red);
+  margin-left: 2px;
+  animation: blink 0.8s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+.letter-screen__signature {
+  margin-top: 2rem;
+  font-family: var(--font-script);
+  font-size: 1.4rem;
+  color: var(--red);
+  text-align: center;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Special cards */
+.special__title {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--red);
+  margin-bottom: 2rem;
+}
+
+.special__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+  max-width: 360px;
+}
+
+.special__card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(255, 26, 26, 0.25);
+  border-radius: 12px;
+  background: rgba(255, 26, 26, 0.04);
+  font-size: 0.85rem;
+  color: var(--white);
+  font-weight: 300;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.special__card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.special__card-icon {
+  color: var(--red);
+  flex-shrink: 0;
+}
+
+/* Music */
+.music-screen__photo {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  filter: grayscale(100%) contrast(1.1);
+  box-shadow: 0 0 30px rgba(255, 26, 26, 0.25);
+}
+
+.music-screen__photo img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+
+.music-screen__player {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid rgba(255, 26, 26, 0.35);
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 26, 26, 0.06);
+}
+
+.music-screen__note {
+  color: var(--red);
+  font-size: 1.1rem;
+}
+
+.music-screen__track {
+  font-size: 0.8rem;
+  color: var(--white);
+  font-weight: 400;
+}
+
+.music-screen__message p {
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.8;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Gift */
+.gift-screen__box {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 0 20px var(--red-glow));
+  transition: transform 0.8s ease;
+}
+
+.gift-screen__box--opening {
+  animation: giftOpen 1.2s ease forwards;
+}
+
+@keyframes giftOpen {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.15) rotate(-5deg);
+  }
+  70% {
+    transform: scale(0.9) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.gift-screen__title {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--red);
+  margin-bottom: 1rem;
+}
+
+.gift-screen--darkening {
+  background: rgba(0, 0, 0, 0.95);
+  transition: background 1.5s ease;
+}
+
+/* Final */
+.final-screen {
+  justify-content: flex-start;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.final-screen__heart {
+  font-size: 2.5rem;
+  color: var(--red);
+  margin-bottom: 1.5rem;
+  animation: pulse-heart 1.5s ease-in-out infinite;
+  text-shadow: 0 0 30px var(--red-glow);
+  flex-shrink: 0;
+}
+
+@keyframes pulse-heart {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.final-screen__content {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 55vh;
+  min-height: 0;
+  padding-right: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) transparent;
+}
+
+.final-screen__content::-webkit-scrollbar {
+  width: 3px;
+}
+
+.final-screen__content::-webkit-scrollbar-thumb {
+  background: var(--red);
+  border-radius: 4px;
+}
+
+.final-screen__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: var(--white);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.3s;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+  flex-shrink: 0;
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.final-screen__whatsapp:hover {
+  transform: scale(1.04);
+}
